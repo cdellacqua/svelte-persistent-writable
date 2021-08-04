@@ -1,14 +1,9 @@
 <script>
 	import { localStorageAdapter, persistentWritable } from "../";
 
-	const example = persistentWritable(
-		{
-			hello: "world!",
-		},
-		{
-			storage: localStorageAdapter("example"),
-		}
-	);
+	const example = persistentWritable({ hello: "world!" }, {
+		storage: localStorageAdapter("example"),
+	});
 
 	setInterval(() => {
 		$example = {

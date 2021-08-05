@@ -5,6 +5,7 @@
 	"types": "build/index.d.ts",
 	"main": "build/index.cjs.js",
 	"module": "build/index.esm.js",
+	"type": "module",
 	"scripts": {
 		"test": "jest",
 		"coverage": "jest --coverage",
@@ -38,7 +39,8 @@
 		".": {
 			"import": "./build/index.esm.js",
 			"require": "./build/index.cjs.js"
-		}
+		},
+		"./package.json": "./package.json"
 	},
 	"author": "Carlo Dell'Acqua",
 	"license": "MIT",

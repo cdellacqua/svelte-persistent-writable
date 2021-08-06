@@ -1,6 +1,6 @@
 {
 	"name": "svelte-persistent-writable",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"description": "A Svelte writable store that persists data. It supports local and session storage out-of-the-box and can easily be extended to target different storage mechanisms",
 	"types": "build/index.d.ts",
 	"main": "build/index.cjs.js",

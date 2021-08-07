@@ -2,9 +2,10 @@
 
 A Svelte writable store that persists data. It supports local and session storage out-of-the-box and can easily be extended to target different storage mechanisms
 
+
 [NPM Package](https://www.npmjs.com/package/svelte-persistent-writable)
 
-`npm install --save-dev svelte-persistent-writable`
+`npm install svelte-persistent-writable`
 
 
 

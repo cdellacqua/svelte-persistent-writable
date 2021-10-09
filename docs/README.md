@@ -104,13 +104,15 @@ the value the store will contain on its first initialization
 
 ▪ **__namedParameters**: *object*
 
-Name | Type |
------- | ------ |
-`resetOnInitFailure` | undefined &#124; false &#124; true |
-`start` | undefined &#124; function |
-`storage` | [ItemStorage](interfaces/itemstorage.md)‹T› |
+Name | Type | Default |
+------ | ------ | ------ |
+`resetOnInitFailure` | boolean | true |
+`start` | undefined &#124; function | - |
+`storage` | [ItemStorage](interfaces/itemstorage.md)‹T› | - |
 
 **Returns:** *[PersistentWritable](interfaces/persistentwritable.md)‹T›*
+
+a persistent writable store
 
 ___
 

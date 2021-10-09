@@ -26,8 +26,10 @@ Configuration object used to initialize the Persistent Writable
 
 • **resetOnInitFailure**? : *undefined | false | true*
 
-During initialization an Error can be thrown (e.g. when JSON.parse isn't capable of parsing a serialized value in the localStorage)
+(option, defaults to true) during initialization an Error can be thrown (e.g. when JSON.parse isn't capable of parsing a serialized value in the localStorage)
+
 If true, the error will get caught and the store will be re-initialized as if it weren't ever persisted
+
 Otherwise the error will be thrown
 
 ___
@@ -36,7 +38,7 @@ ___
 
 • **start**? : *undefined | function*
 
-a start function that will be called once the writable store has at least one subscriber and optionally returns a stop function that will be called
+(optional) a start function that will be called once the writable store has at least one subscriber and optionally returns a stop function that will be called
 once the store has no remaining subscribers
 
 ___

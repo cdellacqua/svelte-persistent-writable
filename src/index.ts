@@ -135,13 +135,15 @@ export interface PersistentWritableConfig<T> {
 	/** an ItemStorage */
 	storage: ItemStorage<T>;
 	/**
-	 * a start function that will be called once the writable store has at least one subscriber and optionally returns a stop function that will be called
+	 * (optional) a start function that will be called once the writable store has at least one subscriber and optionally returns a stop function that will be called
 	 * once the store has no remaining subscribers
 	 */
 	start?: (set: (value: T) => void) => void | (() => void);
 	/**
-	 * During initialization an Error can be thrown (e.g. when JSON.parse isn't capable of parsing a serialized value in the localStorage)
+	 * (option, defaults to true) during initialization an Error can be thrown (e.g. when JSON.parse isn't capable of parsing a serialized value in the localStorage)
+	 * 
 	 * If true, the error will get caught and the store will be re-initialized as if it weren't ever persisted
+	 * 
 	 * Otherwise the error will be thrown
 	 */
 	resetOnInitFailure?: boolean;
@@ -152,17 +154,20 @@ export interface PersistentWritableConfig<T> {
  * the passed item storage doesn't contain any value, otherwise it will be initialized with the value
  * found in the item storage
  * @param initialValue the value the store will contain on its first initialization
+ * @param config the configuration object
  * @param config.storage an ItemStorage implementation (e.g. localStorageAdapter(key) or sessionStorageAdapter(key))
  * @param config.start (optional) a start function that will be called once the writable store has at least one subscriber and optionally returns a stop function that will be called
  *                     once the store has no remaining subscribers
- * @param config.resetOnInitFailure (optional) During initialization an Error can be thrown (e.g. when JSON.parse isn't capable of parsing a serialized value in the localStorage)
+ * @param config.resetOnInitFailure (optional, defaults to true) during initialization an Error can be thrown (e.g. when JSON.parse isn't capable of parsing a serialized value in the localStorage)
+ * 
  *                                  If true, the error will get caught and the store will be re-initialized as if it weren't ever persisted
+ * 
  *                                  Otherwise the error will be thrown
- * @returns
+ * @returns a persistent writable store
  */
 export function persistentWritable<T>(
 	initialValue: T,
-	{ storage, start, resetOnInitFailure }: PersistentWritableConfig<T>
+	{ storage, start, resetOnInitFailure = true }: PersistentWritableConfig<T>
 ): PersistentWritable<T> {
 	let initialOrExistingValue = initialValue;
 	try {
@@ -173,7 +178,7 @@ export function persistentWritable<T>(
 			initialOrExistingValue = option.value;
 		}
 	} catch (err) {
-		if (resetOnInitFailure === undefined || resetOnInitFailure) {
+		if (resetOnInitFailure) {
 			storage.set(initialValue);
 		} else {
 			throw err;
